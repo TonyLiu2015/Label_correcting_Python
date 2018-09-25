@@ -1,7 +1,6 @@
 '''
 Shortest path in python.
 '''
-import math
 import csv
 
 _MAX_LABEL_COST = 10000
