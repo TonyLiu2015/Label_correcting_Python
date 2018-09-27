@@ -57,8 +57,8 @@ def g_ReadInputData():
                                 node.node_id = internal_node_seq_no
                                 internal_node_seq_no += 1
                                 
-                                node.x = float(l[2])
-                                node.y = float(l[3])
+                                node.x = l[2]
+                                node.y = l[3]
                                 
                                 g_node_list.append(node)
                                 g_number_of_nodes += 1
