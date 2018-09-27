@@ -57,9 +57,7 @@ def g_ReadInputData():
                                 node.node_id = internal_node_seq_no
                                 internal_node_seq_no += 1
                                 
-                                node.x = l[2]
-                                node.y = l[3]
-                                
+#                              
                                 g_node_list.append(node)
                                 g_number_of_nodes += 1
                                 if g_number_of_nodes % 100 == 0:
@@ -129,7 +127,6 @@ def optimal_label_correcting(origin_node, destination_node):
         while len(SEList)>0:
                 from_node = SEList[0]
                 del SEList[0]
-                g_node_status_array[from_node]=2
 
                 for k in range(len(g_node_list[from_node].outgoing_node_list)):
                         link_no=g_node_list[from_node].outgoing_node_list[k].link_seq_no
@@ -143,13 +140,11 @@ def optimal_label_correcting(origin_node, destination_node):
 
                                         g_node_label_cost[to_node] = new_to_node_cost                                
                                         g_node_predecessor[to_node] = from_node  
-                                        g_link_predecessor[to_node] = g_node_list[from_node].outgoing_node_list[k].link_seq_no  
+                                        g_link_predecessor[to_node] = g_node_list[from_node].outgoing_node_list[k].link_seq_no 
 
-                        if (g_node_status_array[to_node]==2):
-                                continue
+                                        if to_node not in SEList:
+                                                SEList.append(to_node) 
 
-                        if(g_node_status_array[to_node]==0):
-                                SEList.append(to_node)
                         
         if (destination_node >= 0 and g_node_label_cost[destination_node] < _MAX_LABEL_COST):
                 return 1
